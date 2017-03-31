@@ -1,0 +1,32 @@
+[
+  {
+    "user": "test2",
+    "views": 1,
+    "ct": 1490949311,
+    "content": "\r\nSegmentFault\r\n头条问答专栏讲堂职位活动搜索\r\n输入关键字搜索\r\n消息注册 · 登录\r\nhome\r\njavascript\r\nphp\r\npython\r\njava\r\nmysql\r\nios\r\nandroid\r\nnode.js\r\nhtml5\r\nlinux\r\nc++\r\ncss3\r\ngit\r\ngolang\r\nruby\r\nvim\r\ndocker\r\nmongodb\r\n问\r\nidea/phpstorm/webstorm/pycharm 能不能分栏显示？\r\n\r\nweb java php  wuhuaji 2015年06月23日提问\r\n关注  5 关注\r\n收藏  4 收藏，8.5k 浏览\r\n问题对人有帮助，内容完整，我也想知道答案0 问题没有实际价值，缺少关键内容，没有改进余地\r\n就是一个屏幕分左右两栏，或者三栏，或者四栏显示。\r\n\r\n搜索了一通，没有找到，不知道是不支持？\r\n\r\n还是我搜索方法的问题？\r\n2015年06月23日提问 2 评论 邀请回答  编辑  更多\r\n默认排序时间排序\r\n2个回答\r\n\r\n答案对人有帮助，有参考价值3 答案没帮助，是错误的答案，答非所问\r\n\r\n已采纳\r\n可以的哦\r\n\r\n方法是 右键标签\r\n\r\n2015年06月23日回答  3 评论 编辑\r\n\r\nTongChia\r\n179 声望\r\n答案对人有帮助，有参考价值2 答案没帮助，是错误的答案，答非所问\r\n这个是跟你的窗口管理器相关的，与开发软件无关。 win下基本是浮动式，但实现了左右平铺（某种情况下）。 linux下需要你安装平铺式的窗口管理器...就能实现你想要的效果了。\r\n\r\n附上一张awesome的图（我以前用awesome）\r\n\r\n\r\n2015年06月23日回答  1 评论 编辑\r\n\r\nmugbya\r\n1k 声望\r\n撰写答案\r\n\r\n\r\n撰写答案...\r\n讲堂推荐 更多\r\n\r\n2017-04-19 周三\r\n\r\n基于JSON的SOA解决方案及其在云服务API管理中的应用\r\nnausea7 人参与\r\n\r\n2017-04-24 周一\r\n\r\n性感的PHP——现代化的PHP开发\r\n纸牌屋弗兰克37 人参与\r\n\r\n2017-05-10 周三\r\n\r\n\b\b学习 Vue 你需要知道的 webpack 知识\r\nKingMario3 人参与\r\n\r\n2017-05-13 周六\r\n\r\nDocker：新时代程序猿不可或缺的技术\r\n有明18 人参与\r\n\r\n2017-06-04 周日\r\n\r\nweb 安全之加密与解密技术\r\n耗子20 人参与\r\n\r\n相似问题\r\n\r\n怎么修改pycharm等IntelliJ IDEA版本控制文件修改的颜色 1 回答 | 已解决\r\nwebstorm的php文件显示问题 3 回答\r\nInteliJ IDEA系列编辑器万能五笔输入法问题 1 回答\r\nwebstorm 或 phpstorm 的快捷键问题 2 回答 | 已解决\r\nphpstorm or webstorm 新建一个包 1 回答\r\nPhpStorm / WebStorm 能实现双向实时修改(双向实时调试)吗？ 2 回答\r\n有没有类似leetcode的可以使用php的刷题网站？或者说推荐一款适合刷题的Java IDE。 2 回答 | 已解决\r\nwebstorm/phpstorm中，如何更改代码提示的优先级？ 1 回答\r\nphpStorm 如何移动 .idea 文件夹？ 1 回答\r\nIDEA使用Gradle构建Java Web项目 3 回答\r\n分享扩散：\r\n新浪微博微信TwitterFacebook\r\nHi，欢迎来到 SegmentFault 技术社区！⊙▽⊙ \r\n\r\n在这里，你可以提出编程相关的疑惑，关注感兴趣的问题，对认可的回答投赞同票；\r\n大家会帮你解决编程的问题，和你探讨技术更新，为你的回答投上赞同票。\r\n立即注册\r\n明天提醒我\r\n网站相关\r\n关于我们\r\n服务条款\r\n帮助中心\r\n声望与权限\r\n编辑器语法\r\n每周精选\r\nApp 下载\r\n社区服务中心\r\n联系合作\r\n联系我们\r\n加入我们\r\n合作伙伴\r\n媒体报道\r\n建议反馈\r\n常用链接\r\n笔记插件: Chrome\r\n笔记插件: Firefox\r\n订阅：问答 / 文章\r\n文档镜像\r\n社区访谈\r\nD-DAY 技术沙龙\r\n黑客马拉松 Hackathon\r\n域名搜索注册\r\n周边店铺\r\n关注我们\r\nGithub\r\nTwitter\r\n新浪微博\r\n团队日志\r\n产品技术日志\r\n社区运营日志\r\n市场运营日志\r\n内容许可\r\n除特别说明外，用户内容均采用 知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议 进行许可\r\n本站由 又拍云 提供 CDN 存储服务\r\nCopyright © 2011-2017 SegmentFault. 当前呈现版本 17.02.05\r\n浙ICP备 15005796号-2   浙公网安备 33010602002000号\r\n回顶部\r\n",
+    "title": "你好",
+    "ut": 1490949311,
+    "id": 1,
+    "user_id": 2
+  },
+  {
+    "user": "test2",
+    "views": 3,
+    "ct": 1490949349,
+    "content": "三扽三的",
+    "title": "？撒娇嘉宾",
+    "ut": 1490949349,
+    "id": 2,
+    "user_id": 2
+  },
+  {
+    "user": "王八蛋",
+    "views": 4,
+    "ct": 1490949411,
+    "content": "asddddd",
+    "title": "asd",
+    "ut": 1490949411,
+    "id": 3,
+    "user_id": 4
+  }
+]

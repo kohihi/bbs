@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>bbs club</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<form class="from-horizontal" method="post" action="{{ url_for('.register') }}">
+		<div class="control-group">
+			<label class="control-label">用户名</label>
+			<div class="controls">
+				<input type="text" class="input-xlarge" name="username">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">密码</label>
+			<div class="controls">
+				<input type="text" class="input-xlarge" name="password">
+			</div>
+		</div>
+		<div class="from-horizontal">
+			<input type="submit" class="span-primary" value="注册">
+		</div>
+	</form>
+	<form class="from-horizontal" method="post" action="{{ url_for('.login') }}">
+		<div class="control-group">
+			<label class="control-label">用户名</label>
+			<div class="controls">
+				<input type="text" class="input-xlarge" name="username">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">密码</label>
+			<div class="controls">
+				<input type="text" class="input-xlarge" name="password">
+			</div>
+		</div>
+		<div class="from-horizontal">
+			<input type="submit" class="span-primary" value="登录">
+		</div>
+	</form>
+</body>
+</html>
