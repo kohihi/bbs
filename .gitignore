@@ -47,3 +47,4 @@ Temporary Items
 __pycache__/config.cpython-34.pyc
 config.py
 .idea
+*.pyc

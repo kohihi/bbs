@@ -15,6 +15,8 @@ main = Blueprint('topic', __name__)
 
 @main.route("/")
 def index():
+    if current_user() is None:
+        return redirect(url_for('index.index'))
     board_id = int(request.args.get('board_id', -1))
     if board_id == -1:
         ms = Topic.all()
