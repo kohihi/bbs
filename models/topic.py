@@ -12,6 +12,7 @@ class Topic(Model):
         self.views = 0
         self.ct = int(time.time())
         self.ut = self.ct
+        self.board_id = int(form.get('board_id', -1))
 
     @classmethod
     def get(cls, id):

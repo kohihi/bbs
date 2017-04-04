@@ -1,4 +1,5 @@
 import json
+from utils import log
 
 
 def save(data, path):
@@ -31,7 +32,7 @@ class Model(object):
 
     def __repr__(self):
         classname = self.__class__.__name__
-        properties = ['{}: ({})'.format(k, v) for k, v in self.__dict__]
+        properties = ['{}: ({})'.format(k, v) for k, v in self.__dict__.items()]
         s = '\n'.join(properties)
         return '< {}\n{}\n>\n'.format(classname, s)
 
@@ -69,6 +70,7 @@ class Model(object):
 
     @classmethod
     def all(cls):
+        log('models, l-73 is all')
         """
         得到所有 models
         :return: 
@@ -120,3 +122,23 @@ class Model(object):
         l = [m.__dict__ for m in models]
         path = self.db_path()
         save(l, path)
+
+    @classmethod
+    def delete(cls, id):
+        models = cls.all()
+        index = -1
+        for i, e in enumerate(models):
+            if e.id == id:
+                index = i
+                break
+        # 判断是否找到了这个 id 的数据
+        if index == -1:
+            # 没找到
+            pass
+        else:
+            obj = models.pop(index)
+            l = [m.__dict__ for m in models]
+            path = cls.db_path()
+            save(l, path)
+            # 返回被删除的元素
+            return obj

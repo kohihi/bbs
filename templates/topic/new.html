@@ -23,6 +23,12 @@
         <textarea autofocus class='span9' id='title'
                   name='title' rows='1'
                   placeholder="标题字数 10 字以上"></textarea>
+        选择版块
+        <select name="board_id" id="board">
+                {% for b in bs %}
+                    <option value="{{ b.id }}">{{ b.title }}</option>
+                {% endfor %}
+        </select>
         <div class='markdown_editor in_editor'>
           <div class='markdown_in_editor'>
             <textarea class='editor' name='content' rows='20'
