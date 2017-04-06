@@ -5,6 +5,14 @@
     <title>Board admin</title>
 </head>
 <body>
+    <a href="{{ url_for('topic.index') }}">返回首页</a>
+    <div>
+        {% for b in bs %}
+        <div>
+            {{ b.title }} <a href="{{ url_for('board.delete', board_id=b.id) }}"><em>删除频道</em></a>
+        </div>
+        {% endfor %}
+    </div>
     <form action="{{ url_for('.add') }}" method="post">
         <input name="title">
         <br>

@@ -10,6 +10,7 @@ class User(Model):
         self.id = form.get('id', None)
         self.username = form.get('username', '')
         self.password = form.get('password', '')
+        self.role = 11
 
     def salted_password(self, password, salt=password_salt):
         salt_psw = password + salt

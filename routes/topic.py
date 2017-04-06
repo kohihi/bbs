@@ -1,3 +1,4 @@
+from utils import log
 from flask import (
     render_template,
     request,
@@ -29,7 +30,11 @@ def index():
 @main.route("/<int:topic_id>")
 def detail(topic_id):
     m = Topic.get(topic_id)
-    return render_template("topic/detail.html", topic=m)
+    board_id = m.board_id
+    log('rou/topic l-34, m.board_id', board_id)
+    board = Board.find_by(id=board_id)
+    board_title = board.title
+    return render_template("topic/detail.html", topic=m, board=board_title)
 
 
 @main.route("/new")

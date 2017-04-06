@@ -48,3 +48,6 @@ __pycache__/config.cpython-34.pyc
 config.py
 .idea
 *.pyc
+data/Board.txt
+data/User.txt
+data/Topic.txt
