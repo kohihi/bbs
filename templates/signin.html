@@ -24,9 +24,9 @@
         <div class="desk-front sign-flow clearfix sign-flow-simple">
 
             <div class="index-tab-navs">
-                <div class="navs-slider">
-                    <a href="/signup" class="active">注册</a>
-                    <a href="/signin">登录</a>
+                <div class="navs-slider" data-active-index="1">
+                    <a href="/signup">注册</a>
+                    <a href="/signin" class="active">登录</a>
                     <span class="navs-slider-bar"></span>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 </form>
             </div>
 
-            <div class="view view-signup selected">
+            <div class="view view-signup">
                 <form class="zu-side-login-box" action="{{ url_for('.register') }}" id="sign-form-1" autocomplete="off"
                       method="POST">
                     <input type="password" hidden>

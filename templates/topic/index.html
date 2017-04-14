@@ -16,6 +16,11 @@
 <body>
 <div id="main">
     <div id="sidebar">
+        <a href="{{ url_for('index.profile') }}" class="user_avatar">
+            {{ user.username }}
+            <img src="{{ url_for('index.uploads', filename=user.user_image) }}"
+                         title="{{ user.username }}"/>
+        </a>
         <div class="panel">
             <div class="inner">
                 <a href="/topic/new" class="create_topic_btn">

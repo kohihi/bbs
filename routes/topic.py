@@ -19,12 +19,13 @@ def index():
     if current_user() is None:
         return redirect(url_for('index.index'))
     board_id = int(request.args.get('board_id', -1))
+    u = current_user()
     if board_id == -1:
         ms = Topic.all()
     else:
         ms = Topic.find_all(board_id=board_id)
     bs = Board.all()
-    return render_template("topic/index.html", ms=ms, bs=bs)
+    return render_template("topic/index.html", ms=ms, bs=bs, user=u)
 
 
 @main.route("/<int:topic_id>")

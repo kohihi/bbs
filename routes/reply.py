@@ -16,4 +16,4 @@ def add():
     u = current_user()
     r = Reply.new(form, user_id=u.id)
     r.save()
-    return redirect(url_for('topic.detail', id=r.topic_id))
+    return redirect(url_for('topic.detail', topic_id=r.topic_id))
