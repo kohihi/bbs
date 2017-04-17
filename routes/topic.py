@@ -5,6 +5,7 @@ from flask import (
     redirect,
     url_for,
     Blueprint,
+    Response,
 )
 
 from routes import current_user
@@ -25,7 +26,7 @@ def index():
     else:
         ms = Topic.find_all(board=board)
         log('routes-topic-l27-title:', board)
-    bs = Board.all()
+    bs = Board.all(deleted=False)
     return render_template("topic/index.html", ms=ms, bs=bs, user=u)
 
 
@@ -33,14 +34,16 @@ def index():
 def detail(topic_id):
     topic_id = str(topic_id)
     m = Topic.get(topic_id)
-    board = m.board
-    log('rou/topic l-34, m.board_id', board)
-    return render_template("topic/detail.html", topic=m, board=board)
+    if m.deleted is False:
+        board = m.board
+        return render_template("topic/detail.html", topic=m, board=board)
+    else:
+        return redirect(url_for('topic.index'), 404)
 
 
 @main.route("/new")
 def new():
-    bs = Board.all()
+    bs = Board.all(deleted=False)
     return render_template("topic/new.html", bs=bs)
 
 

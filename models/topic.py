@@ -13,12 +13,14 @@ class Topic(Model):
         ('board', str, 'no-board'),
     ]
 
-    def from_form(self, form):
-        self.content = form.get('content', '')
-        self.title = form.get('title', '')
-        self.user = form.get('username', '')
-        self.views = 0
-        self.board = form.get('board_title', 'no-title')
+# 使用了基类 model 的 _new_from_dict(), 尝试停用所有 Model 子类的此函数
+# def from_form(self, form):
+#     self.content = form.get('content', '')
+#     self.title = form.get('title', '')
+#     self.user = form.get('username', '')
+#     self.views = 0
+#     self.board = form.get('board_title', 'no-title')
+
 
     @classmethod
     def get(cls, id):

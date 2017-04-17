@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
     <div>
-        <img src="{{ url_for('.uploads', filename=user.user_image) }}?v=v=3&amp;s=120">
+        <img class="img-rounded" src="{{ url_for('.uploads', filename=user.user_image) }}?v=v=3&amp;s=120">
         <br>
         更换头像
-        <form method="post" action="{{ url_for('.add_img') }}" enctype="multipart/form-data">
+        <form method="post" action="/add_img" enctype="multipart/form-data">
             <p><input type='file' name='file'>
-                <input type='submit' value='Upload'>
+                <input type='submit' value='Upload' class="btn btn-primary">
         </form>
         <p>
             用户名：{{ user.username }}
-            <br>
-            密码： {{ user.password }}
         </p>
-
     </div>
-
-</body>
-</html>
+{% endblock %}

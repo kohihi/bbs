@@ -14,11 +14,12 @@ class User(Model):
         ('role', int, 11),
     ]
 
-    def from_form(self, form):
-        self.username = form.get('username', '')
-        self.password = form.get('password', '')
-        self.user_image = form.get('user_image', 'default.png')
-        self.role = int(form.get('role', 11))
+    # # 使用了基类 model 的 _new_from_dict(), 尝试停用所有 Model 子类的此函数
+    # def from_form(self, form):
+    #     self.username = form.get('username', '')
+    #     self.password = form.get('password', '')
+    #     self.user_image = form.get('user_image', 'default.png')
+    #     self.role = int(form.get('role', 11))
 
     def salted_password(self, password, salt=password_salt):
         salt_psw = password + salt

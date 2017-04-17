@@ -2,6 +2,7 @@ import json
 from utils import log
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import time
 
 client = MongoClient()
 db = client.BBS
@@ -179,8 +180,8 @@ class Model(object):
         '_id',
         ('type', str, ''),
         ('deleted', bool, False),
-        ('created_time', int, 0),
-        ('updated_time', int, 0),
+        ('ct', int, 0),
+        ('ut', int, 0),
     ]
 
     def __repr__(self):
@@ -208,11 +209,23 @@ class Model(object):
         :return: 
         """
         # 使用空字典实例化一个对象
-        m = cls({})
+        m = cls()
+        fields = cls.__fields__.copy()
+        fields.remove('_id')
         # 从 d 中将 class 属性取出
-        for k, v in d.items():
-            # 使用 setattr 函数设置 m 的属性
-            setattr(m, k, v)
+        log('** d', d)
+        for f in fields:
+            log('** f', f)
+            # key，type，value
+            k, t, v = f
+            if k in d:
+                log('** k', k)
+                log('** d[k]', d[k])
+                setattr(m, k, d[k])
+                log('*** m', m)
+            else:
+                setattr(m, k, v)
+        m.type = cls.__name__.lower()
         return m
 
     @classmethod
@@ -248,14 +261,19 @@ class Model(object):
         l = [cls._new_with_db(d) for d in ds]
         return l
 
-    def from_form(self, form):
-        log('init pass')
-        pass
+    # 使用了基类 model 的 _new_from_dict(), 尝试停用所有 Model 子类的此函数
+    # def from_form(self, form):
+    #     log('init pass')
+    #     pass
 
     @classmethod
     def new(cls, form, **kwargs):
         m = cls()
-        m.from_form(form)
+        log('***models-init-new-m:', m.__fields__)
+        m = m._new_from_dict(form)
+        t = int(time.time())
+        setattr(m, 'ct', t)
+        setattr(m, 'ut', t)
         for k, v in kwargs.items():
             setattr(m, k, v)
         return m
@@ -288,6 +306,7 @@ class Model(object):
 
     def save(self):
         name = self.__class__.__name__
+        log('****', self.__dict__)
         db[name].save(self.__dict__)
 
     @classmethod

@@ -1,25 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>bbs club</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/lib/editor/editor.css">
-    <link rel="stylesheet" href="/static/lib/webuploader/webuploader.css">
-    <script src="/static/lib/jquery-3.0.0.min.js"></script>
-    <script src="/static/lib/markdownit.js"></script>
-    <script src="/static/lib/webuploader/webuploader.withoutimage.js"></script>
-    <script src="/static/lib/editor/editor.js"></script>
-    <script src="/static/lib/editor/ext.js"></script>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}index{% endblock %}
+{% block content %}
 <div id="main">
     <div id="sidebar">
         <a href="{{ url_for('index.profile') }}" class="user_avatar">
             {{ user.username }}
             <img src="{{ url_for('index.uploads', filename=user.user_image) }}"
-                         title="{{ user.username }}"/>
+                         title="用户信息"/>
         </a>
         <div class="panel">
             <div class="inner">
@@ -32,9 +19,9 @@
     <div id="content">
         <div class="panel">
             <div class="header">
-                <a href="/topic" class="topic-tab current-tab">全部</a>
+                <a href="/topic" class="topic-tab">全部</a>
                 {% for b in bs %}
-                <a href="/topic?board={{ b.title }}" class="topic-tab current-tab">{{ b.title }}</a>
+                <a href="/topic?board={{ b.title }}" class="topic-tab">{{ b.title }}</a>
                 {% endfor %}
             </div>
             <div class="inner post">
@@ -60,7 +47,7 @@
     var editor = new Editor();
     editor.render($('.editor')[0]);
   })();
-
 </script>
+{% endblock %}
 </body>
 </html>

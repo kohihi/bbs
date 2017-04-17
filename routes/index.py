@@ -58,6 +58,12 @@ def login():
         return jsonify({'state': state})
 
 
+@main.route("/search", methods=['POST', 'GET'])
+def search():
+    q = request.args.get('q', '')
+    return redirect('https://www.google.com/search?q={}'.format(q))
+
+
 @main.route('/profile')
 def profile():
     u = current_user()
