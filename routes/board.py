@@ -8,6 +8,7 @@ from flask import (
 
 from routes import current_user
 from models.board import Board
+from utils import log
 
 main = Blueprint('board', __name__)
 
@@ -18,7 +19,7 @@ def admin():
     if role != 1:
         return redirect(url_for('index.index'))
     else:
-        bs = Board.all()
+        bs = Board.all(deleted=False)
         return render_template('board/admin.html', bs=bs)
 
 
@@ -29,16 +30,19 @@ def add():
         return redirect(url_for('index.index'))
     else:
         form = request.form
-        topic = Board.new(form)
-        topic.save()
+        board = Board.new(form)
+        log('route-board-l34-b_fields:', board.__fields__)
+        board.save()
     return redirect(url_for('.admin'))
 
 
-@main.route("/delete/<int:board_id>")
-def delete(board_id):
+@main.route("/delete/<board>")
+def delete(board):
     role = current_user().role
     if role != 1:
         return redirect(url_for('index.index'))
     else:
-        Board.delete(board_id)
+        b = Board.find_by(title=board)
+        b_id = b._id
+        Board.delete(b_id)
         return redirect(url_for('.admin'))

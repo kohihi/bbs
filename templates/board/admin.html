@@ -9,7 +9,7 @@
     <div>
         {% for b in bs %}
         <div>
-            {{ b.title }} <a href="{{ url_for('board.delete', board_id=b.id) }}"><em>删除频道</em></a>
+            {{ b.title }} <a href="{{ url_for('board.delete', board=b.title) }}"><em>删除频道</em></a>
         </div>
         {% endfor %}
     </div>

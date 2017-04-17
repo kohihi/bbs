@@ -89,7 +89,7 @@
         {% endfor %}
         <div>
             <form action="{{ url_for('reply.add') }}" method="post">
-                <input type="hidden" name="topic_id" value="{{ topic.id }}">
+                <input type="hidden" name="topic_id" value="{{ topic._id }}">
                 <textarea name="content"></textarea>
                 <button>添加回复</button>
             </form>

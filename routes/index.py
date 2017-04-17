@@ -6,6 +6,7 @@ from flask import (
     url_for,
     Blueprint,
     send_from_directory,
+    jsonify,
 )
 from werkzeug.utils import secure_filename
 from models.user import User
@@ -14,7 +15,10 @@ from config import (
     accept_user_file_type,
     user_file_director,
 )
-from utils import log
+from utils import (
+    log,
+    json_response,
+)
 import os
 
 main = Blueprint('index', __name__)
@@ -23,36 +27,35 @@ main = Blueprint('index', __name__)
 @main.route("/")
 def index():
     u = current_user()
-    return render_template('signin.html', user=u)
+    return render_template('login.html', user=u)
 
 
 @main.route("/register", methods=['POST'])
 def register():
     form = request.form
-    User.register(form)
-    return redirect(url_for('.index'))
+    result = User.register(form)
+    if result is True:
+        return redirect(url_for('.index'))
+    else:
+        return redirect(url_for('.index'))
 
 
 @main.route("/login", methods=['POST'])
 def login():
-    form = request.form
+    form = request.get_json()
+    log('form', form)
     # validate_login 返回 None 或 一个 User 对象
     # None 为登录失败
     u = User.validate_login(form)
     if u is None:
-        return redirect(url_for('topic.index'))
+        state = 102
+        return jsonify({'state': state})
     else:
-        session['user_id'] = u.id
+        session['username'] = u.username
         session.permanent = True
-        return redirect(url_for('topic.index'))
-
-@main.route("/signin")
-def signin():
-    return render_template('signin.html')
-
-@main.route("/signup")
-def signup():
-    return render_template('signup.html')
+        log('index l-56 session:', session)
+        state = 100
+        return jsonify({'state': state})
 
 
 @main.route('/profile')
@@ -62,6 +65,11 @@ def profile():
         return redirect(url_for('.index'))
     else:
         return render_template('profile.html', user=u)
+
+
+@main.route('/terms')
+def terms():
+    return render_template('terms.html')
 
 
 def allow_file(filename):

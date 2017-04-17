@@ -5,42 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <title>InBoxMsg - 暂时不知道用来干什么</title>
-
     <link rel="stylesheet" href="static/css/main.css">
-    <script src="static/js/instant.js"></script>
+    <style>
+      .background{
+        z-index: -3;
+        position: fixed;
+      }
+      .heimu,.heimu a,a .heimu {
+          border: none;
+          background-color: #252525!important;
+          color: #252525!important;
+          cursor: help
+      }
+
+      .heimu:hover,.heimu:active {
+          color: #fff!important;
+      }
+
+      .heimu a:hover,a:hover .heimu {
+          border: none;
+          cursor: pointer
+      }
+    </style>
 </head>
 <body class="zhi ">
-
-
+<img class="background" src="static/img/background-web.png">
 <div class="index-main">
     <div class="index-main-body">
         <div class="index-header">
 
-            <h1>InBoxMsg</h1>
-
-            <h2 class="subtitle">分享你装逼的知识、经验和技巧</h2>
+            <h1>InBox-Msg</h1>
+            <h2 class="subtitle">稻花香里说丰年<br><span class="heimu">听取人生经验</span></h2>
         </div>
 
         <div class="desk-front sign-flow clearfix sign-flow-simple">
 
             <div class="index-tab-navs">
-                <div class="navs-slider">
-                    <a href="/signup" class="active">注册</a>
-                    <a href="/signin">登录</a>
+                <div class="navs-slider" data-active-index="0">
+                    <a id="id-signup" href="#signup" class="active">注册</a>
+                    <a id="id-signin" href="#signin">登录</a>
                     <span class="navs-slider-bar"></span>
                 </div>
             </div>
 
 
-            <div class="view view-signin selected">
-                <form method="POST" action="{{ url_for('.login') }}">
+            <div class="view view-signin" id="id-signin-form">
+                <form class="zu-side-login-box" id="sign-form-0" autocomplete="off" method="'POST">
                     <div class="group-inputs">
                         <div class="account input-wrapper">
-                            <input type="text" name="username" aria-label="用户名" placeholder="用户名" required>
+                            <input id="id-login-uname" type="text" name="username" aria-label="用户名" placeholder="用户名" required>
                         </div>
 
                         <div class="verification input-wrapper">
-                            <input type="password" name="password" aria-label="密码" placeholder="密码" required/>
+                            <input id="id-login-password" type="password" name="password" aria-label="密码" placeholder="密码" required/>
                         </div>
 
                         <div class="input-wrapper captcha-module" data-type="en">
@@ -49,12 +66,12 @@
                     </div>
 
                     <div class="button-wrapper command">
-                        <button class="sign-button" type="submit" >登录</button>
+                        <button class="sign-button" id="id-btn-login" type="submit" >登录</button>
                     </div>
                 </form>
             </div>
 
-            <div class="view view-signup selected">
+            <div class="view view-signup selected" id="id-signup-form">
                 <form class="zu-side-login-box" action="{{ url_for('.register') }}" id="sign-form-1" autocomplete="off"
                       method="POST">
                     <input type="password" hidden>
@@ -84,10 +101,12 @@
         </div>
     </div>
 </div>
-
 <div class="footer">
     <a href="#" class="footer-mobile-show">联系我们</a>
 </div>
+
+<script src="static/js/login/ajax.js"></script>
+<script src="static/js/login/login.js"></script>
 
 </body>
 </html>

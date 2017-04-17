@@ -34,7 +34,7 @@
             <div class="header">
                 <a href="/topic" class="topic-tab current-tab">全部</a>
                 {% for b in bs %}
-                <a href="/topic?board_id={{ b.id }}" class="topic-tab current-tab">{{ b.title }}</a>
+                <a href="/topic?board={{ b.title }}" class="topic-tab current-tab">{{ b.title }}</a>
                 {% endfor %}
             </div>
             <div class="inner post">
@@ -42,11 +42,11 @@
                     {% for t in ms %}
                     <div class="cell">
                         <div class="topic_title_wrapper">
-                            <a class="topic_title" href="{{ url_for('topic.detail', topic_id=t.id) }}">
+                            <a class="topic_title" href="{{ url_for('topic.detail', topic_id=t._id) }}">
                                 {{ t.title }}
                             </a>
                             <span>{{ t.replies() | count }} / {{ t.views }}</span>
-                            <a href="{{ url_for('topic.delete', topic_id=t.id) }}">删除</a>
+                            <a href="{{ url_for('topic.delete', topic_id=t._id) }}">删除</a>
                         </div>
                     </div>
                     {% endfor %}
