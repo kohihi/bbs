@@ -13,16 +13,6 @@ from utils import log
 main = Blueprint('board', __name__)
 
 
-@main.route("/admin")
-def admin():
-    role = current_user().role
-    if role != 1:
-        return redirect(url_for('index.index'))
-    else:
-        bs = Board.all(deleted=False)
-        return render_template('board/admin.html', bs=bs)
-
-
 @main.route("/add", methods=["POST"])
 def add():
     role = current_user().role
@@ -33,7 +23,7 @@ def add():
         board = Board.new(form)
         log('route-board-l34-b_fields:', board.__fields__)
         board.save()
-    return redirect(url_for('.admin'))
+    return redirect(url_for('index.admin'))
 
 
 @main.route("/delete/<board>")

@@ -4,7 +4,6 @@ var e = function(sel) {
 
 // method：请求方法 path：请求路径 data：请求数据 Callback：回调函数
 var ajax = function(method, path, data, responseCallback) {
-	console.log('ajax')
 	// new 一个 XMLHttpRequest 对象
 	var r = new XMLHttpRequest()
 	// 设置 method，path，Async=true（异步）
@@ -12,18 +11,15 @@ var ajax = function(method, path, data, responseCallback) {
 	// 设置请求格式为 json
 	r.setRequestHeader('Content-Type', 'application/json')
 	// 监测 r 的变化
-	console.log('r.response ' + r.readyState)
 	r.onreadystatechange = function() {
 		// 当返回数据准备完成时（r.readyState 为 4 时）执行回调函数
 		if(r.readyState === 4) {
-			console.log('r.response ' + r.response)
 			// r.response 为响应的 body
 			responseCallback(r.response)
 		}
 	}
 	data = JSON.stringify(data)
     // 发送请求
-    console.log(data)
     r.send(data)
 }
 

@@ -213,7 +213,6 @@ class Model(object):
         fields = cls.__fields__.copy()
         fields.remove('_id')
         # 从 d 中将 class 属性取出
-        log('** d', d)
         for f in fields:
             log('** f', f)
             # key，type，value
@@ -252,10 +251,12 @@ class Model(object):
 
     @classmethod
     def _find(cls, **kwargs):
+        log('** is _find', kwargs)
         name = cls.__name__
         flag_sort = '__sort'
         sort = kwargs.pop(flag_sort, None)
         ds = db[name].find(kwargs)
+        # log('** len(ds)', len(ds))
         if sort is not None:
             ds = ds.sort(sort)
         l = [cls._new_with_db(d) for d in ds]
@@ -301,7 +302,6 @@ class Model(object):
 
     @classmethod
     def find_all(cls, **kwargs):
-        log('model-init-l287-find_all:', kwargs, 'in', cls.__name__)
         return cls._find(**kwargs)
 
     def save(self):

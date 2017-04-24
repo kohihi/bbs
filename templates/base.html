@@ -10,10 +10,15 @@
     <link rel="icon" href="https://cdn.dribbble.com/assets/features/icon-openmail-2x-61ec81ea8f8dd4388cd59ab2721a28a23ac5205d18ace5ed915b40e791ae49da.png" type="image/x-icon"/>
     <!-- style -->
     <link rel="stylesheet" href="//o4j806krb.qnssl.com/public/stylesheets/index.min.9d1ebdbb.min.css" media="all" />
-    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-    <!-- scripts -->
-    <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
     <script src="//o4j806krb.qnssl.com/public/index.min.aeb155e1.min.js"></script>
+
+    <!-- bootstrap -->
+    <!--
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    -->
+
+    {% block script %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -42,6 +47,7 @@
 </div>
 {% block content %}
 {% endblock %}
-
+{% block script2 %}
+{% endblock %}
 </body>
 </html>

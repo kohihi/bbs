@@ -10,7 +10,7 @@ class User(Model):
     __fields__ = Model.__fields__ + [
         ('username', str, ''),
         ('password', str, ''),
-        ('user_image', str, ''),
+        ('user_image', str, 'default.png'),
         ('role', int, 11),
     ]
 
@@ -21,7 +21,8 @@ class User(Model):
     #     self.user_image = form.get('user_image', 'default.png')
     #     self.role = int(form.get('role', 11))
 
-    def salted_password(self, password, salt=password_salt):
+    @classmethod
+    def salted_password(cls, password, salt=password_salt):
         salt_psw = password + salt
         ascii_str = salt_psw.encode('ascii')
         hash_psw = hashlib.sha256(ascii_str).hexdigest()
@@ -31,23 +32,31 @@ class User(Model):
     def register(cls, form):
         name = form.get('username', '')
         pwd = form.get('password', '')
-        if len(name) > 2 and len(pwd) >= 6 and User.find_by(username=name) is None:
-            u = User()
-            u.from_form(form)
-            u.password = u.salted_password(pwd)
-            u.save()
-            return True
-        else:
-            return False
+        # state_code
+        sc = 200
+        if len(name) < 2:
+            sc = 203
+            return sc
+        if len(pwd) < 6:
+            sc = 202
+            return sc
+        if User.find_by(username=name) is not None:
+            sc = 201
+            return sc
+        u = User()
+        u = u.new(form)
+        u.password = u.salted_password(pwd)
+        u.save()
+        return sc
 
     @classmethod
     def validate_login(cls, form):
-        u = User()
-        u.from_form(form)
-        user = User.find_by(username=u.username)
-        if user is not None and user.password == u.salted_password(u.password):
-            log('login--', u.username)
+        name = form.get('username', None)
+        password = form.get('password', None)
+        user = User.find_by(username=name)
+        if user is not None and user.password == User.salted_password(password):
+            log('login--', name)
             return user
         else:
-            log('login fail--', u.username)
+            log('login fail--', name)
             return None

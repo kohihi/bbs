@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Board admin{% endblock %}
+{% block content %}
+<div id="main">
+    <div id='sidebar'>
+        <div class='panel'>
+            <div class='header'>
+                <span class='col_fade'>Board</span>
+            </div>
+            <div class='inner'>
+                <div class='user_card'>
+                    <div>
+                        {% for b in bs %}
+                        <div>
+                            <span class='user_name'><a class='dark'>{{ b.title }}</a></span>
+                            <a href="{{ url_for('board.delete', board=b.title) }}"><em>删除频道</em></a>
+                        </div>
+                        {% endfor %}
+                        <form action="{{ url_for('board.add') }}" method="post">
+                            <input name="title">
+                            <br>
+                            <button>添加</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="panel">
+            <div class="header">
+                <a class="dark">Topic</a>
+                <a href="/admin" class="topic-tab">全部</a>
+                {% for b in bs %}
+                <a href="/admin?board={{ b.title }}" class="topic-tab">{{ b.title }}</a>
+                {% endfor %}
+                <a href="/admin?board=deleted" class="topic-tab">已删除</a>
+            </div>
+            <div class="inner post">
+                <div class="topic_list">
+                    {% for t in ms %}
+                    <div class="cell">
+                        <div class="topic_title_wrapper">
+                            <a class="topic_title" href="{{ url_for('topic.detail', topic_id=t._id) }}">
+                                {{ t.title }}
+                            </a>
+                            <span>{{ t.replies() | count }} / {{ t.views }}</span>
+                            <a href="{{ url_for('topic.delete', topic_id=t._id) }}">删除</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

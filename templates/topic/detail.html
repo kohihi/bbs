@@ -1,7 +1,29 @@
 {% extends "base.html" %}
+{% block script %}
+<link rel="stylesheet" href="//o4j806krb.qnssl.com/public/stylesheets/index.min.9d1ebdbb.min.css" media="all"/>
+<script src="//o4j806krb.qnssl.com/public/index.min.aeb155e1.min.js"></script>
+{% endblock %}
 {% block title %}bbs club{% endblock %}
 {% block content %}
 <div id="main">
+    <div id='sidebar'>
+        <div class='panel'>
+            <div class='header'>
+                <span class='col_fade'>作者</span>
+            </div>
+            <div class='inner'>
+                <div class='user_card'>
+                    <div>
+                        <a class='user_avatar'>
+                            <img src="{{ url_for('index.uploads', filename=author.user_image) }}" title="{{ topic.user }}"/>
+                        </a>
+                        <span class='user_name'><a class='dark'>{{ topic.user }}</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="content">
         <div class='panel'>
             <div class='header topic_header'>
@@ -28,59 +50,74 @@
             <div class='inner topic'>
                 <div class='topic_content'>
                     <div class="markdown-text">
-                        {{ topic.content }}
+                      <p>{{ content | safe }}</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class='panel'>
-        <div class='header'>
-            <span class='col_fade'>
-                <!-- 过滤器 -->
-                {{ topic.replies() | count }} 回复
-            </span>
-        </div>
-        {% for r in topic.replies() %}
-        <div class='cell reply_area reply_item'>
-            <div class='author_content'>
-                <a href="/user/leiwei1991" class="user_avatar">
-                    <img src="{{ url_for('index.uploads', filename=r.user().user_image) }}?v=3&amp;s=120"
-                         title="{{ r.user().username }}"/>
-                </a>
-                <div class='user_info'>
-                    <a class='dark reply_author'>
-                        {{ r.user().username }}
+        <div class='panel'>
+            <div class='header'>
+                <span class='col_fade'>
+                    <!-- 过滤器 -->
+                    {{ topic.replies() | count }} 回复
+                </span>
+            </div>
+            {% for r in topic.replies() %}
+            <div class='cell reply_area reply_item'>
+                <div class='author_content'>
+                    <a class="user_avatar">
+                        <img src="{{ url_for('index.uploads', filename=r.user().user_image) }}?v=3&amp;s=120"
+                             title="{{ r.user().username }}"/>
                     </a>
-                    <a class="reply_time">
-                        {{ loop.index }}楼 • 2 天前
-                    </a>
-                </div>
-                <div class='user_action'>
-                    <span>
-                        <i class="fa up_btn
-                          fa-thumbs-o-up
-                          invisible" title="喜欢"></i>
-                        <span class="up-count">
+                    <div class='user_info'>
+                        <a class='dark reply_author'>
+                            {{ r.user().username }}
+                        </a>
+                        <a class="dark reply_time">
+                            {{ loop.index }}楼 • 2 天前
+                        </a>
+                    </div>
+                    <div class='user_action'>
+                        <span>
+                            <i class="fa up_btn
+                              fa-thumbs-o-up
+                              invisible" title="喜欢"></i>
+                            <span class="up-count">
+                            </span>
                         </span>
-                    </span>
+                    </div>
+                </div>
+                <div class='reply_content from-leiwei1991'>
+                    <div class="markdown-text">
+                        {{ r.content }}
+                    </div>
                 </div>
             </div>
-            <div class='reply_content from-leiwei1991'>
-                <div class="markdown-text">
-                    {{ r.content }}
-                </div>
+            {% endfor %}
+            <div class="panel">
+                <br>
+                <form action="{{ url_for('reply.add') }}" method="post">
+                    <input type="hidden" name="topic_id" value="{{ topic._id }}">
+                    <textarea name="content" class="editor" rows="1"></textarea>
+                    <br>
+                    <button>添加回复</button>
+                </form>
             </div>
-        </div>
-        {% endfor %}
-        <div>
-            <form action="{{ url_for('reply.add') }}" method="post">
-                <input type="hidden" name="topic_id" value="{{ topic._id }}">
-                <textarea name="content"></textarea>
-                <button>添加回复</button>
-            </form>
         </div>
     </div>
-</div>    
+</div>
+{% endblock %}
+{% block script2 %}
+<script>
+  // google analytics
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script', "https://www.google-analytics.com/analytics.js",'ga');
+
+  ga('create', 'UA-41753901-5', 'auto');
+  ga('send', 'pageview');
+
+</script>
 {% endblock %}

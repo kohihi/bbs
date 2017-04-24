@@ -1,43 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>bbs club</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/lib/editor/editor.css">
-    <link rel="stylesheet" href="/static/lib/webuploader/webuploader.css">
-    <script src="/static/lib/jquery-3.0.0.min.js"></script>
-    <script src="/static/lib/markdownit.js"></script>
-    <script src="/static/lib/webuploader/webuploader.withoutimage.js"></script>
-    <script src="/static/lib/editor/editor.js"></script>
-    <script src="/static/lib/editor/ext.js"></script>
-</head>
-<body>
-<div class='navbar'>
-    <div class='navbar-inner'>
-        <div class='container'>
-            <a class='brand' href='/topic'>
-                <img src="https://www.google.co.jp/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png"/>
-            </a>
-            <form id='search_form' class='navbar-search' action="/search">
-                <input type='text' id='q' name='q' class='search-query span3' value=''/>
-            </form>
-            <ul class='nav pull-right'>
-                <li><a href='/topic'>首页</a></li>
-                <li><a href='/'>注册</a></li>
-                <li><a href='/'>登录</a></li>
-
-            </ul>
-            <a class="btn btn-navbar" id="responsive-sidebar-trigger">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-        </div>
-    </div>
-</div>
-
+{% extends 'base.html' %}
+{% block script %}
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/lib/editor/editor.css">
+<link rel="stylesheet" href="/static/lib/webuploader/webuploader.css">
+<script src="/static/lib/jquery-3.0.0.min.js"></script>
+<script src="/static/lib/markdownit.js"></script>
+<script src="/static/lib/webuploader/webuploader.withoutimage.js"></script>
+<script src="/static/lib/editor/editor.js"></script>
+<script src="/static/lib/editor/ext.js"></script>
+{% endblock %}
+{% block title %}new-topic{% endblock %}
+{% block content %}
 <div id="main">
     <div id="content">
         <div class="panel">
@@ -69,12 +43,13 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block script2 %}
 <script>
   (function () {
     var editor = new Editor();
     editor.render($('.editor')[0]);
   })();
-
 </script>
-</body>
-</html>
+{% endblock %}
+

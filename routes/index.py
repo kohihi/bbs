@@ -10,6 +10,8 @@ from flask import (
 )
 from werkzeug.utils import secure_filename
 from models.user import User
+from models.board import Board
+from models.topic import Topic
 from routes import current_user
 from config import (
     accept_user_file_type,
@@ -17,7 +19,6 @@ from config import (
 )
 from utils import (
     log,
-    json_response,
 )
 import os
 
@@ -26,18 +27,16 @@ main = Blueprint('index', __name__)
 
 @main.route("/")
 def index():
-    u = current_user()
-    return render_template('login.html', user=u)
+    return render_template('login.html')
 
 
 @main.route("/register", methods=['POST'])
 def register():
-    form = request.form
-    result = User.register(form)
-    if result is True:
-        return redirect(url_for('.index'))
-    else:
-        return redirect(url_for('.index'))
+    log('** in register')
+    form = request.get_json()
+    log('** in register form', form)
+    state = User.register(form)
+    return jsonify(state=state)
 
 
 @main.route("/login", methods=['POST'])
@@ -48,14 +47,31 @@ def login():
     # None 为登录失败
     u = User.validate_login(form)
     if u is None:
-        state = 102
-        return jsonify({'state': state})
+        state = 101
+        return jsonify(state=state)
     else:
         session['username'] = u.username
         session.permanent = True
-        log('index l-56 session:', session)
         state = 100
-        return jsonify({'state': state})
+        return jsonify(state=state)
+
+
+@main.route("/admin")
+def admin():
+    role = current_user().role
+    if role != 1:
+        return redirect(url_for('.index'))
+    else:
+        board = request.args.get('board', None)
+        if board is None:
+            ms = Topic.all(deleted=False)
+        else:
+            if board == 'deleted':
+                ms = Topic.find_all(board=board)
+            else:
+                ms = Topic.find_all(deleted=False, board=board)
+        bs = Board.all()
+        return render_template('admin.html', bs=bs, ms=ms)
 
 
 @main.route("/search", methods=['POST', 'GET'])

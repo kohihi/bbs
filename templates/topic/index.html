@@ -33,7 +33,6 @@
                                 {{ t.title }}
                             </a>
                             <span>{{ t.replies() | count }} / {{ t.views }}</span>
-                            <a href="{{ url_for('topic.delete', topic_id=t._id) }}">删除</a>
                         </div>
                     </div>
                     {% endfor %}
