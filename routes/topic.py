@@ -25,7 +25,7 @@ def index():
     board = request.args.get('board', None)
     u = current_user()
     if board is None:
-        ms = Topic.all(deleted=False)
+        ms = Topic.cache_all(deleted=False)
     else:
         ms = Topic.find_all(deleted=False, board=board)
     bs = Board.all(deleted=False)
