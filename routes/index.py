@@ -71,7 +71,7 @@ def admin():
             else:
                 ms = Topic.find_all(deleted=False, board=board)
         bs = Board.all()
-        return render_template('admin.html', bs=bs, ms=ms)
+        return render_template('index.html', bs=bs, ms=ms)
 
 
 @main.route("/search", methods=['POST', 'GET'])
@@ -131,7 +131,7 @@ def add_img():
         return redirect(url_for(".profile"))
 
     if 'file' not in request.files:
-        log('file on in files')
+        log('file not in files')
         return redirect(request.url)
 
     file = request.files['file']

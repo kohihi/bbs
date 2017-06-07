@@ -1,9 +1,17 @@
 server {
     listen 80;
+    server_name www.inboxmsg.xyz inboxmsg.xyz;
     location / {
+        proxy_set_header real-ip $remote_addr;
         proxy_pass http://localhost:8000;
     }
-    location /blog {
+}
+
+server {
+    listen 80;
+    server_name blog.inboxmsg.xyz;
+    location / {
+        proxy_set_header real-ip $remote_addr;
         proxy_pass http://localhost:8001;
     }
 }

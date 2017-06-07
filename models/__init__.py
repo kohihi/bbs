@@ -19,7 +19,7 @@ def save(data, path):
     """
     s = json.dumps(data, indent=2, ensure_ascii=False)
     with open(path, 'w+', encoding='utf-8') as f:
-        f.write(s)
+        f.editor(s)
 '''
 
 
