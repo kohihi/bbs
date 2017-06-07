@@ -33,9 +33,6 @@ class Topic(Model):
             key = k[0]
             if not key.startswith('_'):
                 d[key] = getattr(self, key)
-            else:
-                key = '_id'
-                d[key] = str(getattr(self, key))
         return json.dumps(d)
 
     @classmethod
@@ -63,6 +60,6 @@ class Topic(Model):
             log('update cache')
             Topic.cache.set('all_topic', json.dumps([i.to_json() for i in cls.all(**kwargs)]))
             Topic.should_update_cache = False
-        j = json.loads(str(Topic.cache.get('all_topic'),encoding='utf-8'))
+        j = json.loads(Topic.cache.get('all_topic'))
         j = [Topic.from_json(i) for i in j]
         return j
